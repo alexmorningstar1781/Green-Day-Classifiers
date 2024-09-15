@@ -1,2 +1,11 @@
 # Green-Day-Classifiers
 WIP project using mel spectrograms to predict what green day songs belong to a particular album
+This project's main goal was to utilize a CNN based model to analyze song audio files converted to mel spectrograms and see if it could classify/predict the album the song was released on with reasonable accuracy. I focused on a single artist "Green Day" and 7 albums to build a framework I intend to build upon over time. Green day was used since I already had the audiofiles accessable.
+
+The first step involved generating enough data to train a CNN model. I decided to split the songs into 15 segments per song. 10 of those segments were used for the initial train and test set. the other 5 were set aside to further evaluate the model once it was saved and reloaded.
+
+A potential issue in generating the data was how the songs were split into 15 equal segments. The impact of song length on model performance was not fully explored or corrected. This will be investigated more in the future. However, its worth noting that song length did seem to have an impact as the album American Idiot has 2 unusually long songs. when initial testing the model including american idiot in the test data produced much lower accuracy after traing than when it was left out. as a quick fix, Jesus of Suburbia was split into 5 parts since it was written with 5 distinct and subtitled section in the song. Homecoming was removed as an outlier due to its length and the song section being written and sung by each member of the group. however a more robust method of splitting songs into multiple parts needs to be developed.
+
+Features and labels were extracted from the song segments during the conversion to mel spectrograms. the data was preprocesed to a usable structure the CNN could interpret. A confusion matrix, accuracy plot over epochs, and accuracy calculation were generated after traning the model. the model was save and reloaded and 5 new song segments were preprocessed in the same manner as the training/test data and the model correctly predicted the album labels for the song segment with a 78% success rate.
+
+This model was an exercise and more work can be done to improve performance and capabilities which I will implement over time.
